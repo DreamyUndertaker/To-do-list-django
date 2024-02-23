@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h3>Удалить элемент списка</h3>
+
+<p>Вы правда хотите удалить элемент: <b>{{ object.title }}</b>
+    <p>from the list <i>{{ todo_list.title }}</i>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input value="Да, удалить" type="submit">
+        <input value="Отменить" type="button" onclick="location.href='{% url "list" todo_list.id %}';" />
+    </form>
+
+    {% endblock %}
