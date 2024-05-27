@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+    {% if object_list %}
+        <h3 class="mb-4">Все списки</h3>
+        <div class="list-group">
+            {% for todolist in object_list %}
+                <a href="{% url 'list' todolist.id %}" class="list-group-item list-group-item-action">{{ todolist.title }}</a>
+            {% empty %}
+                <div class="alert alert-info" role="alert">
+                    У вас нет списков
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="mt-3">
+        <a href="{% url 'list-add' %}" class="btn btn-primary">Добавить новый список</a>
+    </div>
+{% endblock %}

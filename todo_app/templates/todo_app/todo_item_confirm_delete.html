@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Удалить элемент списка</h3>
+            <p>Вы правда хотите удалить элемент: <b>{{ object.title }}</b> из списка <i>{{ todo_list.title }}</i>?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Да, удалить</button>
+                <a href="{% url 'list' todo_list.id %}" class="btn btn-secondary">Отменить</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ title }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Принять</button>
+                <a href="{% url 'list' todo_list.id %}" class="btn btn-secondary">Отменить</a>
+                {% if object %}
+                    <a href="{% url 'item-delete' todo_list.id object.id %}" class="btn btn-danger">Удалить эту запись</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

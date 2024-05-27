@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Редактировать список:</h3>
+            <h5 class="card-subtitle mb-2 text-muted">{{ todo_list.title|upper }}</h5>
+            <ul class="list-group list-group-flush">
+                {% for todo in object_list %}
+                    <li class="list-group-item">
+                        <a href="{% url 'item-update' todo_list.id todo.id %}">{{ todo.title }} (Due {{ todo.due_date|date:"l, F j" }})</a>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">В этом списке нет записей</li>
+                {% endfor %}
+            </ul>
+            <div class="mt-3">
+                <a href="{% url 'item-add' todo_list.id %}" class="btn btn-success">Добавить новый пункт</a>
+                <a href="{% url 'list-delete' todo_list.id %}" class="btn btn-danger">Удалить список</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
