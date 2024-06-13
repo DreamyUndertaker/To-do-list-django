@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Просроченные задачи</h2>
+    <ul>
+        {% for item in object_list %}
+            <li>
+                <strong>{{ item.title }}</strong> - Срок: {{ item.due_date }} <br>
+                {{ item.description }}
+            </li>
+        {% empty %}
+            <li>Нет просроченных задач.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">Вернуться к спискам задач</a>
+{% endblock %}

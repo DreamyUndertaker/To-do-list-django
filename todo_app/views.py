@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 from django.views.generic import (
     ListView,
     CreateView,
@@ -111,3 +112,11 @@ class ItemDelete(UserPassesTestMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context["todo_list"] = self.object.todo_list
         return context
+
+
+class OverdueItemListView(ListView):
+    model = ToDoItem
+    template_name = "todo_app/overdue_list.html"
+
+    def get_queryset(self):
+        return ToDoItem.objects.filter(due_date__lt=timezone.now())

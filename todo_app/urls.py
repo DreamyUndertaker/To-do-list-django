@@ -6,7 +6,7 @@ from .views import (
     ItemCreate,
     ItemUpdate,
     ListDelete,
-    ItemDelete,
+    ItemDelete, OverdueItemListView,
 )
 
 urlpatterns = [
@@ -17,4 +17,5 @@ urlpatterns = [
     path('list/<int:list_id>/item/<int:pk>/edit/', ItemUpdate.as_view(), name='item-update'),
     path('list/<int:list_id>/item/<int:pk>/delete/', ItemDelete.as_view(), name='item-delete'),
     path('list/<int:pk>/delete/', ListDelete.as_view(), name='list-delete'),
+    path("overdue/", OverdueItemListView.as_view(), name="overdue-list"),
 ]
